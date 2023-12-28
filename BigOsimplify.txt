@@ -1,0 +1,141 @@
+
+Step One: Simplifying Expressions
+Simplify the following big O expressions as much as possible:
+
+1. O(n + 10): O(n) - dominant term is "n". 
+
+2. O(100 + n): O(n) - Constant factors are dropped.
+
+3. O(25): O(1). - Constant factors are dropped. 
+
+4. O(n^2 + n^3): O(n^3) - Least dominant term is disregarded. 
+
+5. O(n + n + n + n): O(n) - Dominant term is "n". 
+
+6. O(1000 * log(n) + n): O(n) - Dominant term is "n".
+
+7. O(1000 * n * log(n) + n): O(n * log(n)) - Dominant term is "n * log(n)".
+
+8. O(2^n + n^2): O(2^n)- Dominant term is "2^n". 
+
+9. O(5 + 3 + 1): O(1) - Constant terms dropped. 
+
+10. O(n + n^(1/2) + n^2 + n*log(n)^10): O(n^2) - Dominant term is "n^2". 
+
+
+Step Two: Calculating Time Complexity
+Determine the time complexities for each of the following functions. 
+
+
+1. function logUpTo(n) {
+  for (let i = 1; i <= n; i++) {
+    console.log(i);
+  }
+}
+This is a single-loop function that iterates from `i=1` to `i=n`, executing "n"
+time, and the in-loop operation is a constant-time operation. The time complexity of the 
+function is determined by the loop, making it O(n). 
+
+2. function logAtLeast10(n) {
+    for (let i = 1; i <= Math.max(n, 10); i++) {
+      console.log(i);
+    }
+  }
+  The time complexity for this function also equals O(n). This is because the dominant factor 
+  determining the time complexity of this function is the linear growth in the size of the "n"
+  Input. The `Math.max(n,10)` expression does not change the overall linear growth behavior with respect to "n".
+
+3. function logAtMost10(n) {
+    for (let i = 1; i <= Math.min(n, 10); i++) {
+      console.log(i);
+    }
+  }
+  The loop iterates from `i = 1` to the minimum of `n` and `10` and the conditional is as such that
+  the loop will not execute more than 10x. This is because the loop will terminate when `i` exceeds the minimum of 
+  `n` and `10`. The time complexity of this function, therefore, is O(1), constant time. 
+  
+4. function onlyElementsAtEvenIndex(array) {
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+      if (i % 2 === 0) {
+        newArray.push(array[i]);
+      }
+    }
+    return newArray;
+  }
+  The time complexity for this function is O(n), because it is determined by the loop. "n" indicates the 
+  length of the input array. The running time increases in this function in a linear fashion with the size of 
+  the input array. 
+
+5. function subtotals(array) {
+    let subtotalArray = [];
+    for (let i = 0; i < array.length; i++) {
+      let subtotal = 0;
+      for (let j = 0; j <= i; j++) {
+        subtotal += array[j];
+      }
+      subtotalArray.push(subtotal);
+    }
+    return subtotalArray;
+  }
+  
+  This function contains nested loops. The outer loop runs for each element in the input array,
+  and the inner loop runs up to the current index `i`. For each interation of the outer loop, the inner loop
+  performs a summation of elements up to the current index. This results in a quadratic growth 
+  pattern. The number of operations is proportional to the sum of the first "n" natural 
+  numbers, O(n^2). The nested loop structure is the dominant factor in determining the time 
+  complexity of this function. 
+
+  6. function vowelCount(str) {
+    let vowelCount = {};
+    const vowels = "aeiouAEIOU";
+  
+    for (let char of str) {
+      if(vowels.includes(char)) {
+        if(char in vowelCount) {
+          vowelCount[char] += 1;
+        } else {
+          vowelCount[char] = 1;
+        }
+      }
+    }
+  
+    return vowelCount;
+  }
+
+  The time complexity of this function is O(n), because the number of operations
+  is proportional to the length of the input String. In O(n), "n" is the length of the input String. 
+
+  
+  Part 3 - short answer
+Answer the following questions
+
+1. True or false: n^2 + n is O(n^2). True. (Focus on dominant term)
+
+2. True or false: n^2 * n is O(n^3). True.  (n^2 * n = n^3)
+
+3. True or false: n^2 + n is O(n). False. (n^2 is the dominant term. O(n^2) is the correct answer.)
+
+4. What’s the time complexity of the .indexOf array method? O(n), where "n" is the length of the array. 
+
+5. What’s the time complexity of the .includes array method? O(n), where "n" is the length of the array. 
+
+6. What’s the time complexity of the .forEach array method? O(n), where "n" is the length of the array.
+
+7. What’s the time complexity of the .sort array method? O(n log n). The divide-and-conquer aspect of sorting 
+divides the array into smaller segments, sorts them, and then merges them.
+
+8. What’s the time complexity of the .unshift array method? O(n). Linear. 
+
+9. What’s the time complexity of the .push array method? O(1). Constant time. 
+
+10. What’s the time complexity of the .splice array method? O(n + k), "n" is the length of the array, 
+and "k" is the number of elements inserted or deleted. 
+
+11. What’s the time complexity of the .pop array method? O(1). Constant, the function removes the last element from an array. 
+
+12. What’s the time complexity of the Object.keys() function? O(n), linear. 
+
+BONUS
+
+What’s the space complexity of the Object.keys() function? O(n). Linear. 
